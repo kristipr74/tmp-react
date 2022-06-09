@@ -1,71 +1,113 @@
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route } from "react-router-dom";
 import {
   IonApp,
+  IonContent,
+  IonHeader,
   IonIcon,
+  IonItem,
   IonLabel,
+  IonList,
+  IonMenu,
+  IonMenuToggle,
   IonRouterOutlet,
   IonTabBar,
   IonTabButton,
   IonTabs,
-  setupIonicReact
-} from '@ionic/react';
-import { IonReactRouter } from '@ionic/react-router';
-import { ellipse, square, triangle } from 'ionicons/icons';
-import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+  IonTitle,
+  IonToolbar,
+  setupIonicReact,
+} from "@ionic/react";
+import { IonReactRouter } from "@ionic/react-router";
+import { ellipse, square, list, triangle, options } from "ionicons/icons";
+import Home from "./pages/Home";
+import Calendar from "./pages/Calendar";
+import Games from "./pages/Games";
+import Results from "./pages/Results";
 
 /* Core CSS required for Ionic components to work properly */
-import '@ionic/react/css/core.css';
+import "@ionic/react/css/core.css";
 
 /* Basic CSS for apps built with Ionic */
-import '@ionic/react/css/normalize.css';
-import '@ionic/react/css/structure.css';
-import '@ionic/react/css/typography.css';
+import "@ionic/react/css/normalize.css";
+import "@ionic/react/css/structure.css";
+import "@ionic/react/css/typography.css";
 
 /* Optional CSS utils that can be commented out */
-import '@ionic/react/css/padding.css';
-import '@ionic/react/css/float-elements.css';
-import '@ionic/react/css/text-alignment.css';
-import '@ionic/react/css/text-transformation.css';
-import '@ionic/react/css/flex-utils.css';
-import '@ionic/react/css/display.css';
+import "@ionic/react/css/padding.css";
+import "@ionic/react/css/float-elements.css";
+import "@ionic/react/css/text-alignment.css";
+import "@ionic/react/css/text-transformation.css";
+import "@ionic/react/css/flex-utils.css";
+import "@ionic/react/css/display.css";
 
 /* Theme variables */
-import './theme/variables.css';
+import "./theme/variables.css";
 
 setupIonicReact();
 
 const App: React.FC = () => (
   <IonApp>
     <IonReactRouter>
+      <IonMenu contentId="main">
+        <IonHeader>
+          <IonToolbar>
+            <IonTitle>Tulemused</IonTitle>
+          </IonToolbar>
+        </IonHeader>
+        <IonContent>
+          <IonList>
+            <IonMenuToggle>
+              <IonItem button routerLink="/games" routerDirection="none">
+                <IonIcon slot="start" icon={list} />
+                <IonLabel>Kõik tulemused</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+            <IonMenuToggle>
+              <IonItem button routerLink="/results" routerDirection="none">
+                <IonIcon slot="start" icon={options} />
+                <IonLabel>Ülevaade</IonLabel>
+              </IonItem>
+            </IonMenuToggle>
+          </IonList>
+        </IonContent>
+      </IonMenu>
+
       <IonTabs>
-        <IonRouterOutlet>
-          <Route exact path="/tab1">
-            <Tab1 />
+        <IonRouterOutlet id="main">
+          <Route exact path="/home">
+            <Home />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+
+          <Route exact path="/games">
+            <Games />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route exact path="/calendar">
+            <Calendar />
           </Route>
+          <Route exact path="/results">
+            <Results />
+          </Route>
+
           <Route exact path="/">
-            <Redirect to="/tab1" />
+            <Redirect to="/calendar" />
           </Route>
         </IonRouterOutlet>
         <IonTabBar slot="bottom">
-          <IonTabButton tab="tab1" href="/tab1">
-            <IonIcon icon={triangle} />
-            <IonLabel>Tab 1</IonLabel>
+          <IonTabButton tab="home" href="/home">
+            {<IonIcon icon={triangle} />}
+            <IonLabel>Avaleht</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
-            <IonIcon icon={ellipse} />
-            <IonLabel>Tab 2</IonLabel>
+          <IonTabButton tab="calendar" href="/calendar">
+            {<IonIcon icon={ellipse} />}
+            <IonLabel>Kalender</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
-            <IonIcon icon={square} />
-            <IonLabel>Tab 3</IonLabel>
+          <IonTabButton tab="games" href="/games">
+            {<IonIcon icon={square} />}
+            <IonLabel>Mäng</IonLabel>
+          </IonTabButton>
+          <IonTabButton tab="result" href="/results">
+            {<IonIcon icon={list} />}
+            <IonLabel>Tulemused</IonLabel>
           </IonTabButton>
         </IonTabBar>
       </IonTabs>

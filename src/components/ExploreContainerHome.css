@@ -1,0 +1,40 @@
+.container {
+  text-align: center;
+  color: rgb(220, 220, 233);
+  position: absolute;
+  text-align:center;
+  left: 0;
+  right: 0;
+  top: 75%;
+  transform: translateY(-50%);
+}
+
+.container strong {
+  font-size: 30px;
+  line-height: 26px;
+}
+
+.container p {
+  font-size: 16px;
+  line-height: 22px;
+  color: #8c8c8c;
+  margin: 0;
+}
+
+.container a {
+  text-decoration: none;
+}
+
+.container button {
+  background-color: rgb(70, 138, 190); /* Green */
+  border: none;
+  color: white;
+  padding: 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 50%;
+}
