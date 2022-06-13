@@ -6,27 +6,28 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import ExploreContainer from "../components/ExploreContainerHome";
+import ExploreContainerHome from "../components/ExploreContainerHome";
 import "./Home.css";
 
 const Home: React.FC = () => {
   return (
     <IonPage>
-      {/*       <IonHeader>
+      <IonHeader collapse="condense">
         <IonToolbar>
-          <IonTitle>Avaleht</IonTitle>
+          <IonTitle size="large">SASKUMÄNGIJA ABIMEES</IonTitle>
         </IonToolbar>
-      </IonHeader> */}
+      </IonHeader>
       <IonContent class="kaardid" fullscreen>
-        <IonHeader collapse="condense">
-          <IonToolbar>
-            <IonTitle size="large">SASKUMÄNGIJA ABIMEES</IonTitle>
-          </IonToolbar>
-        </IonHeader>
-        <ExploreContainer name="SASKUMÄNGIJA ABIMEES" />
-        <IonButton routerLink="calendar" color="primary" shape="round" >Sisene
-          </IonButton>
+        <ExploreContainerHome name="SASKUMÄNGIJA ABIMEES" />
       </IonContent>
+      <IonButton
+        routerLink="calendar"
+        expand="block"
+        size="small"
+        shape="round"
+      >
+        Sisene
+      </IonButton>
     </IonPage>
   );
 };

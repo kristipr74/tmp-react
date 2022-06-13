@@ -10,19 +10,14 @@ import {
   IonMenu,
   IonMenuToggle,
   IonRouterOutlet,
-  IonTabBar,
-  IonTabButton,
-  IonTabs,
   IonTitle,
   IonToolbar,
   setupIonicReact,
 } from "@ionic/react";
 import { IonReactRouter } from "@ionic/react-router";
-import { ellipse, square, list, triangle, options } from "ionicons/icons";
-import Home from "./pages/Home";
-import Calendar from "./pages/Calendar";
-import Games from "./pages/Games";
-import Results from "./pages/Results";
+// import GamesContentProvider from "./data/GamesContextProvider";
+import { list, options } from "ionicons/icons";
+import Settings from "./pages/settings";
 
 /* Core CSS required for Ionic components to work properly */
 import "@ionic/react/css/core.css";
@@ -42,6 +37,8 @@ import "@ionic/react/css/display.css";
 
 /* Theme variables */
 import "./theme/variables.css";
+import CalendarContextProvider from "../src/data/CalendarContextProvider"
+import GamesTabs from "./pages/GamesTabs";
 
 setupIonicReact();
 
@@ -57,60 +54,36 @@ const App: React.FC = () => (
         <IonContent>
           <IonList>
             <IonMenuToggle>
-              <IonItem button routerLink="/games" routerDirection="none">
+              <IonItem
+                button
+                routerLink="/calendar/list"
+                routerDirection="none"
+              >
                 <IonIcon slot="start" icon={list} />
                 <IonLabel>Kõik tulemused</IonLabel>
               </IonItem>
             </IonMenuToggle>
             <IonMenuToggle>
-              <IonItem button routerLink="/results" routerDirection="none">
+              <IonItem button routerLink="/settings" routerDirection="none">
                 <IonIcon slot="start" icon={options} />
-                <IonLabel>Ülevaade</IonLabel>
+                <IonLabel>Reeglid</IonLabel>
               </IonItem>
             </IonMenuToggle>
           </IonList>
         </IonContent>
       </IonMenu>
 
-      <IonTabs>
+      <CalendarContextProvider>
         <IonRouterOutlet id="main">
-          <Route exact path="/home">
-            <Home />
+          <Route exact path="/settings">
+            <Settings />
           </Route>
-
-          <Route exact path="/games">
-            <Games />
+          <Route path="/home">
+            <GamesTabs />
           </Route>
-          <Route exact path="/calendar">
-            <Calendar />
-          </Route>
-          <Route exact path="/results">
-            <Results />
-          </Route>
-
-          <Route exact path="/">
-            <Redirect to="/calendar" />
-          </Route>
+          <Redirect path="" to="/home" exact />
         </IonRouterOutlet>
-        <IonTabBar slot="bottom">
-          <IonTabButton tab="home" href="/home">
-            {<IonIcon icon={triangle} />}
-            <IonLabel>Avaleht</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="calendar" href="/calendar">
-            {<IonIcon icon={ellipse} />}
-            <IonLabel>Kalender</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="games" href="/games">
-            {<IonIcon icon={square} />}
-            <IonLabel>Mäng</IonLabel>
-          </IonTabButton>
-          <IonTabButton tab="result" href="/results">
-            {<IonIcon icon={list} />}
-            <IonLabel>Tulemused</IonLabel>
-          </IonTabButton>
-        </IonTabBar>
-      </IonTabs>
+      </CalendarContextProvider>
     </IonReactRouter>
   </IonApp>
 );

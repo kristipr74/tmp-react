@@ -7,8 +7,9 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
+import "./settings.css";
 
-const Results: React.FC = () => {
+const Settings: React.FC = () => {
   return (
     <IonPage>
       <IonHeader>
@@ -16,19 +17,19 @@ const Results: React.FC = () => {
           <IonButtons slot="start">
             <IonMenuButton />
           </IonButtons>
-          <IonTitle>Tulemused</IonTitle>
+          <IonTitle>Mängu reeglid</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
-            <IonTitle size="large">Tulemused</IonTitle>
+            <IonTitle size="large">Reeglid</IonTitle>
           </IonToolbar>
         </IonHeader>
-        <h2>Siia peaksid tulema edaspidi mängude tulemused</h2>
+        <h2>Reeglid</h2>
       </IonContent>
     </IonPage>
   );
 };
 
-export default Results;
+export default Settings;
